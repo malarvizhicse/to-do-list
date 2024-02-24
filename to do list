@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <form id="todo-form">
+            <input type="text" id="todo-input" placeholder="Add new task...">
+            <button type="submit">Add</button>
+        </form>
+        <ul id="todo-list">
+            <!-- Tasks will be added dynamically here -->
+        </ul>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+form input[type="text"] {
+    width: 70%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+form button {
+    padding: 8px 15px;
+    border: none;
+    background-color: #4caf50;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #120d0d;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    border-left: 3px solid #4caf50;
+    display: flex;
+    align-items: center;
+}
+
+li span {
+    flex-grow: 1;
+}
+
+li button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #0e0b0b;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #0d0a0a;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+form input[type="text"] {
+    width: 70%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+form button {
+    padding: 8px 15px;
+    border: none;
+    background-color: #4caf50;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    border-left: 3px solid #4caf50;
+    display: flex;
+    align-items: center;
+}
+
+li span {
+    flex-grow: 1;
+}
+
+li button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #0a0808;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('todo-form');
+    const input = document.getElementById('todo-input');
+    const todoList = document.getElementById('todo-list');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const taskName = input.value.trim();
+        if (taskName !== '') {
+            addTask(taskName);
+            input.value = '';
+        }
+    });
+
+    todoList.addEventListener('click', function(event) {
+        if (event.target.tagName === 'BUTTON') {
+            deleteTask(event.target.parentElement);
+        }
+    });
+
+    function addTask(taskName) {
+        const li = document.createElement('li');
+        li.innerHTML = `<span>${taskName}</span><button>Delete</button>`;
+        todoList.appendChild(li);
+    }
+
+    function deleteTask(taskElement) {
+        taskElement.remove();
+    }
+});
